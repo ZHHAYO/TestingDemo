@@ -20,25 +20,38 @@ data1 = [(1, 2, 3),
          (999999, 1000000, 1999999)]
 
 data2 = [(1, 2, 0.5),
-          (-1, -2, 0.5),
-          (0, 1, 0),
-          (1, 0, 0),
-          (0.1, 0.2, 0.5)]
+         (-1, -2, 0.5),
+         (0, 1, 0),
+         (1, 0, 0),
+         (0.1, 0.2, 0.5)]
+def setup_module():
+    # 整个文件只执行一次
+    print("setup_module")
 
 class TestCalc():
+    @classmethod
+    def setup_class(cls):
+        # 类执行之前的初始化操作
+        print("setup_class")
+
     def setup(self):
         self.calc = Calc()
+
+    # def setup_method(self):
+    #     self.calc = Calc()
+    def teardown(self):
+        print("teardown")
+
+    # def teardown_method(self):
+    #     print("teardown_method")
 
     @pytest.mark.parametrize("a, b, result", data1)
     def test_add(self, a, b, result):
         assert self.calc.add(a, b) == result
 
-
-
     @pytest.mark.parametrize("a, b, result", data2)
     def test_div(self, a, b, result):
         assert self.calc.div(a, b) == result
-
 
     def test_add_1(self):
         data = (1, 2)
