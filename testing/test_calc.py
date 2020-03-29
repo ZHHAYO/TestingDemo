@@ -3,10 +3,9 @@
 # @Time:    2020/3/29 10:12
 # @Author:  haiyong
 # @File:    test_calc.py
-import sys
 import unittest
-
-sys.path.append("..")
+# import sys
+# sys.path.append("..")
 from python.calc import Calc
 
 

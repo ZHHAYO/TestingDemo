@@ -7,9 +7,6 @@
 pytest
 '''
 import pytest
-import sys
-
-sys.path.append("..")
 from python.calc import Calc
 
 data1 = [(1, 2, 3),
@@ -24,9 +21,12 @@ data2 = [(1, 2, 0.5),
          (0, 1, 0),
          (1, 0, 0),
          (0.1, 0.2, 0.5)]
+
+
 def setup_module():
     # 整个文件只执行一次
     print("setup_module")
+
 
 class TestCalc():
     @classmethod
@@ -44,11 +44,12 @@ class TestCalc():
 
     # def teardown_method(self):
     #     print("teardown_method")
-
+    @pytest.mark.demo1
     @pytest.mark.parametrize("a, b, result", data1)
     def test_add(self, a, b, result):
         assert self.calc.add(a, b) == result
 
+    @pytest.mark.demo2  # 添加标签
     @pytest.mark.parametrize("a, b, result", data2)
     def test_div(self, a, b, result):
         assert self.calc.div(a, b) == result
