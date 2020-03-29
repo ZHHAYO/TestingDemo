@@ -4,8 +4,11 @@
 # @Author:  haiyong
 # @File:    calc.py
 class Calc:
-    def add(self, a:int, b:int) -> int:
+    def add(self, a: int, b: int) -> int:
         return a + b
+
+    def add_1(self, para: tuple):
+        return para[0] + para[1]
 
     def div(self, a, b):
         return a / b

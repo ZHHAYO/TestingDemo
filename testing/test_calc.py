@@ -19,5 +19,7 @@ class TestCalc(unittest.TestCase):
 
     def test_add_2(self):
         self.assertEqual(0.03, self.calc.add(0.03, 0.02))
+
+
 if __name__ == '__main__':
     unittest.main()
