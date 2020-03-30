@@ -31,6 +31,9 @@ def setup_module():
 def data():
     with open("test_pytest_data.yaml") as f:
         return yaml.load(f)
+def steps():
+    with open("test_pytest_steps.yaml") as f:
+        return yaml.load(f)
 
 class TestCalc():
     @classmethod
@@ -51,14 +54,26 @@ class TestCalc():
     @pytest.mark.demo1
     @pytest.mark.parametrize("a, b, result", data())
     def test_add(self, a, b, result):
-        assert self.calc.add(a, b) == result
+        data = (a,b)
+        # assert self.calc.add(a, b) == result
+        self.steps(data,result)
+
 
     @pytest.mark.demo2  # 添加标签
     @pytest.mark.parametrize("a, b, result", data2)
     def test_div(self, a, b, result):
         assert self.calc.div(a, b) == result
 
-    def test_add_1(self):
-        data = (1, 2)
-        assert self.calc.add_1(data) == 3
-        assert self.calc.add(*data) == 3
+    def steps(self,data,r):
+        test_steps = steps()
+        for step in test_steps:
+            if step == "add":
+                assert self.calc.add(*data) == r
+            elif step == "add_1":
+                assert self.calc.add_1(data) == r
+
+
+    # def test_add_1(self):
+    #     data = (1, 2)
+    #     assert self.calc.add_1(data) == 3
+    #     assert self.calc.add(*data) == 3
