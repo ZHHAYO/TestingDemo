@@ -8,14 +8,15 @@ pytest
 '''
 import pytest
 from python.calc import Calc
+import yaml
 
-data1 = [(1, 2, 3),
-         (-1, -2, -3),
-         (0, 1, 1),
-         (0, -1, -1),
-         (0.1, 0.2, 0.3),
-         (999999, 1000000, 1999999)]
-
+# data1 = [(1, 2, 3),
+#          (-1, -2, -3),
+#          (0, 1, 1),
+#          (0, -1, -1),
+#          (0.1, 0.2, 0.3),
+#          (999999, 1000000, 1999999)]
+# data1 = yaml.load(open("test_pytest_data.yaml"))
 data2 = [(1, 2, 0.5),
          (-1, -2, 0.5),
          (0, 1, 0),
@@ -26,7 +27,10 @@ data2 = [(1, 2, 0.5),
 def setup_module():
     # 整个文件只执行一次
     print("setup_module")
-
+# @pytest.fixture(scope="module")
+def data():
+    with open("test_pytest_data.yaml") as f:
+        return yaml.load(f)
 
 class TestCalc():
     @classmethod
@@ -45,7 +49,7 @@ class TestCalc():
     # def teardown_method(self):
     #     print("teardown_method")
     @pytest.mark.demo1
-    @pytest.mark.parametrize("a, b, result", data1)
+    @pytest.mark.parametrize("a, b, result", data())
     def test_add(self, a, b, result):
         assert self.calc.add(a, b) == result
 

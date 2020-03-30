@@ -9,22 +9,5 @@ from _pytest.main import Session
 def pytest_collection_modifyitems(session:Session,config,items:list):
     # 对测试用例进行排序
     # 可以改变用例执行顺序
-    items.reverse()
+    # items.reverse()
     session.items = items
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
