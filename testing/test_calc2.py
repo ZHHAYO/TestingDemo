@@ -56,7 +56,7 @@ class TestCalc():
     def test_add(self, a, b, result):
         data = (a,b)
         # assert self.calc.add(a, b) == result
-        self.steps(data,result)
+        self.steps(data,pytest.approx(result))
 
 
     @pytest.mark.demo2  # 添加标签
