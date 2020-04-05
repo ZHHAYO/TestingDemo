@@ -3,12 +3,8 @@
 # @Time:    2020/4/5 11:02
 # @Author:  haiyong
 # @File:    test_js.py
-
-
 import time
-
 from selenium import webdriver
-
 
 class TestJS():
     def setup(self):
