@@ -16,4 +16,9 @@ class AddMember(BasePage):
         self.find(By.CSS_SELECTOR,".js_btn_save").click()
 
     def get_first(self):
-        return self.find(By.CSS_SELECTOR,"#member_list tr:nth-child(1) td:nth-child(2)").get_attribute("title")
+        # return self.find(By.CSS_SELECTOR,"#member_list tr:nth-child(1) td:nth-child(2)").get_attribute("title")
+        elems = self.finds(By.CSS_SELECTOR,"td:nth-child(2)")
+        arrs = []
+        for ele in elems:
+            arrs.append(ele.get_attribute("title"))
+        return arrs

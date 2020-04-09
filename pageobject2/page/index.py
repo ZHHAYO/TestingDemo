@@ -11,10 +11,11 @@ from pageobject2.page.base_page import BasePage
 
 
 class Index(BasePage):
+    _base_url = "https://work.weixin.qq.com/wework_admin/frame"
     def goto_add_member(self):
-        self.driver.get("https://work.weixin.qq.com/wework_admin/frame")
+        # self._driver.get("https://work.weixin.qq.com/wework_admin/frame")
         self.find(By.CSS_SELECTOR, ".index_service_cnt_item").click()
-        return AddMember(self.driver)
+        return AddMember(reuse=True)
     def goto_import_address(self):
         pass
     def goto_member_join(self):

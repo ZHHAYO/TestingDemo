@@ -9,19 +9,22 @@ from selenium.webdriver.android.webdriver import WebDriver
 
 class BasePage():
     _base_url = ""
-    def __init__(self, driver: WebDriver = None):
-        self.driver = None
-        if driver is None:
+    def __init__(self, reuse=False):
+        # 把driver提取出来
+        # self.driver = None
+        if reuse == True:
             # 1.复用已有的浏览器
             chrome_opts = webdriver.ChromeOptions()
             chrome_opts.debugger_address = "127.0.0.1:8123"
-            self.driver = webdriver.Chrome(options=chrome_opts)
-            self.driver.implicitly_wait(5)
+            self._driver = webdriver.Chrome(options=chrome_opts)
         else:
-            self.driver = driver
+            self._driver = webdriver.Chrome()
 
+        self._driver.implicitly_wait(5)
         if self._base_url != "":
-            self.driver.get(self._base_url)
+            self._driver.get(self._base_url)
 
     def find(self, by, locator):
-        return self.driver.find_element(by, locator)
+        return self._driver.find_element(by, locator)
+    def finds(self, by, locator):
+        return self._driver.find_elements(by, locator)
