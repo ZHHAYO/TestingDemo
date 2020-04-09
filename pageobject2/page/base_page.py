@@ -5,10 +5,12 @@
 # @File:    base_page.py
 from selenium import webdriver
 from selenium.webdriver.android.webdriver import WebDriver
+from selenium.webdriver.support.wait import WebDriverWait
 
 
 class BasePage():
     _base_url = ""
+
     def __init__(self, reuse=False):
         # 把driver提取出来
         # self.driver = None
@@ -26,5 +28,11 @@ class BasePage():
 
     def find(self, by, locator):
         return self._driver.find_element(by, locator)
+
     def finds(self, by, locator):
         return self._driver.find_elements(by, locator)
+
+    # 显式等待
+    def wait_for(self, fun):
+        # 如果fun返回了True,那么就退出显式等待
+        WebDriverWait(self._driver, 10).until(fun)
