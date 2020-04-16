@@ -8,8 +8,10 @@ import time
 import pytest
 
 from appium import webdriver
+from appium.webdriver.common.mobileby import MobileBy
 from appium.webdriver.common.touch_action import TouchAction
-
+from selenium.webdriver.support import expected_conditions
+from selenium.webdriver.support.wait import WebDriverWait
 
 class TestXueqiu:
     def setup(self):
@@ -30,9 +32,9 @@ class TestXueqiu:
         desired_caps['appActivity'] = 'com.xueqiu.android.common.MainActivity'
         desired_caps['newCommandTimeout'] = 3000
         # desired_caps['unicodeKeyboard'] = True
-        desired_caps['noReset'] = True
-        desired_caps['dontStopAppOnReset'] = True
-        desired_caps['skipDeviceInitialization'] = True
+        # desired_caps['noReset'] = True
+        # desired_caps['dontStopAppOnReset'] = True
+        # desired_caps['skipDeviceInitialization'] = True
         desired_caps['unicodeKeyboard'] = True
         desired_caps['resetKeybBoard'] = True
 
@@ -46,7 +48,7 @@ class TestXueqiu:
         #     os.system(cmd)
         # driver = webdriver.Remote('http://localhost:4723/wd/hub', desired_caps)
         self.driver = webdriver.Remote('http://127.0.0.1:4723/wd/hub', desired_caps)
-        self.driver.implicitly_wait(15)
+        self.driver.implicitly_wait(5)
 
     def teardown_method(self):
         # self.driver.back()
@@ -106,6 +108,13 @@ class TestXueqiu:
         self.driver.find_element_by_id("com.xueqiu.android:id/search_input_text").send_keys(u"招商银行")
         current_price = self.driver.find_element_by_xpath(
             "//*[@text='SH600036']/../../..//*[@resource-id='com.xueqiu.android:id/current_price']").text
+        # 显示等待
+        # locator = (MobileBy.XPATH,"//*[@text='SH600036']/../../..//*[@resource-id='com.xueqiu.android:id/current_price']")
+        # WebDriverWait(self.driver, 10).until(lambda x: x.find_element(*locator))
+        # # WebDriverWait(self.driver, 10).until(expected_conditions.element_to_be_clickable(locator))
+        # ele = self.driver.find_element(*locator)
+        # print(ele.text)
+        # current_price = ele.text
         assert float(current_price) > 30
 
     def test_myinfo(self):
