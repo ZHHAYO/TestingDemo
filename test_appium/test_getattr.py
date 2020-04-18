@@ -39,5 +39,6 @@ class TestGetAttr:
         print(search_ele.get_attribute("enabled"))
         print(search_ele.get_attribute("clickable"))
         print(search_ele.get_attribute("bounds"))
-        
+
+
 
