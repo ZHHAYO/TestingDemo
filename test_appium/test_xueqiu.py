@@ -66,7 +66,7 @@ class TestXueqiu:
         self.driver.find_element_by_id("com.xueqiu.android:id/tv_search").click()
         self.driver.find_element_by_id("com.xueqiu.android:id/search_input_text").send_keys(u"招商银行")
         self.driver.find_element_by_xpath(
-            "//*[@resource-id='com.xueqiu.android:id/code' and @text='SH600036']").click()
+            "//*[@resource-id='com.xueqiu.android:id/stockCode' and @text='SH600036']").click()
         current_price = float(self.driver.find_element_by_id("com.xueqiu.android:id/stock_current_price").text)
         print(current_price)
         assert current_price > 30
