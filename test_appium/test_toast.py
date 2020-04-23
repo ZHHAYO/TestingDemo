@@ -18,7 +18,7 @@ class TestToast():
             'deviceName': '127.0.0.1:62001',
             'appPackage': 'io.appium.android.apis',
             'appActivity': 'io.appium.android.apis.view.PopupMenu1',
-            'automationName': 'Uiautomator1'
+            'automationName': 'Uiautomator2'
         }
 
         self.driver = webdriver.Remote('http://127.0.0.1:4723/wd/hub', desired_caps)

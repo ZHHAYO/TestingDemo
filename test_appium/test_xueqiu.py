@@ -23,11 +23,12 @@ class TestXueqiu:
         desired_caps = {}
         # desired_caps['recreateChromeDriverSessions'] = True
         desired_caps['platformName'] = 'Android'
-        desired_caps['platformVersion'] = '5.1.1'
-        # desired_caps['deviceName'] = 'WTKDU16813012502'
-        desired_caps['deviceName'] = '127.0.0.1:62001'
+        # desired_caps['platformVersion'] = '5.1.1'
+        desired_caps['platformVersion'] = '8.0'
+        desired_caps['deviceName'] = 'WTKDU16813012502'
+        # desired_caps['deviceName'] = '127.0.0.1:62001'
         desired_caps['appPackage'] = 'com.xueqiu.android'
-        desired_caps['automationName'] = 'Uiautomator1'
+        desired_caps['automationName'] = 'Uiautomator2'
         # desired_caps['app'] = PATH('D:/testing_tools/tendawifi.apk')
         desired_caps['appActivity'] = 'com.xueqiu.android.common.MainActivity'
         desired_caps['newCommandTimeout'] = 3000
