@@ -5,12 +5,13 @@
 # @File:    test_addcontact.py
 from time import sleep
 
+import pytest
 from appium import webdriver
 from appium.webdriver.common.mobileby import MobileBy
 
 
 class TestAdd():
-    def setup(self):
+    def setup_class(self):
         desired_caps = {
             'platformName': 'android',
             'platformVersion': '6.0',
@@ -24,15 +25,29 @@ class TestAdd():
         }
         self.driver = webdriver.Remote('http://127.0.0.1:4723/wd/hub', desired_caps)
         self.driver.implicitly_wait(5)
+    ### 方法一
+    # def setup(self):
+    #     pass
+    #
+    # def teardown(self):
+    #     self.driver.find_element(MobileBy.ID, "com.tencent.wework:id/gpp").click()
+    ### 方法二
+    @pytest.fixture()
+    def add_fixture(self):
+        # setup方法
+        yield
+        #teardown方法
+        self.driver.find_element(MobileBy.ID, "com.tencent.wework:id/gpp").click()
 
-    def teardown(self):
-        # self.driver.quit()
-        pass
 
-    def test_addcontact(self):
-        username = "test2"
-        gender = "男"
-        phonenum = "12345678911"
+    def teardown_class(self):
+        self.driver.quit()
+
+    @pytest.mark.parametrize("username,gender,phonenum",[
+        ("test1","男","12345678910"),
+        ("test2","男","12345678911")
+    ])
+    def test_addcontact(self,add_fixture,username,gender,phonenum):
         self.driver.find_element(MobileBy.XPATH, "//*[@text='通讯录']").click()
         text = '添加成员'
         self.driver.find_element(MobileBy.ANDROID_UIAUTOMATOR,'new UiScrollable(new UiSelector().'
@@ -53,8 +68,9 @@ class TestAdd():
         self.driver.find_element(MobileBy.ID,"com.tencent.wework:id/emh").send_keys(phonenum)
         self.driver.find_element(MobileBy.ID,"com.tencent.wework:id/gq7").click()
         sleep(2)
-        print(self.driver.page_source)
+        # print(self.driver.page_source)
         self.driver.find_element(MobileBy.XPATH,"//*[@class='android.widget.Toast']")
+
 
 
 
