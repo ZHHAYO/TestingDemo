@@ -33,6 +33,15 @@ class TestGetAttr:
         pass
 
     def test_get_attr(self):
+        """
+        打开【雪球】应用首页
+        定位首页的搜索框
+        判断搜索框的是否可用并查看搜索框name属性值
+        打印搜索框这个元素的左上角坐标和它的宽高
+        向搜索框输入: alibaba
+        判断【阿里巴巴】是否可见
+        如果可见,打印“搜索成功”点击,如果不可见,打印“搜索失败
+        """
         search_ele = self.driver.find_element_by_id("com.xueqiu.android:id/tv_search")
         print(search_ele.get_attribute("content-desc"))
         print(search_ele.get_attribute("resource-id"))
