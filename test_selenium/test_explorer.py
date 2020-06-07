@@ -14,7 +14,7 @@ class Testbrowser():
         if browser == 'firefox':
             self.driver = webdriver.Firefox()
         else:
-            self.driver = webdriver.Chrome()
+            self.driver = webdriver.Chrome(executable_path=(r'D:/testing_tools/chromedriver83/chromedriver.exe'))
         self.driver.implicitly_wait(10)
         self.driver.maximize_window()
 
@@ -23,6 +23,7 @@ class Testbrowser():
 
     def test_test(self):
         # 百度搜索测试
+        self.driver.get("https://www.baidu.com/")
         self.driver.find_element(By.XPATH, '//*[@id="kw"]').send_keys("test")
         # self.driver.find_element(By.ID,'kw').send_keys("test")
         # self.driver.find_element(By.CSS_SELECTOR,'#kw').send_keys("test")
