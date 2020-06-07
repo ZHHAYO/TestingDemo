@@ -9,9 +9,9 @@ import requests
 
 
 class TestWeworkApi:
-    # secret = '4pMEU2kLr_a_J8ff032nlWs5X991g8qytjpZJqcWoFI'
-    secret = 'sYlpdAIwZiJ54sQVrgnyxT4SxqNeBBNfwrwOpoVhIkE'
-    id = 'ww3829a2b3ac7808e0'
+    # secret = '4pMEU2kLr_a_J8ff032nlWs5XXXXXXXXXXXXXXXXXXXX'
+    secret = 'sYlpdAIwZiJ54sQVrgnyXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
+    id = 'wWWWW9aXXXXXXXXXXXXXXXXXXXXX8e0'
 
     def setup(self):
         url = f'https://qyapi.weixin.qq.com/cgi-bin/gettoken?corpid={self.id}&corpsecret={self.secret}'
