@@ -33,6 +33,7 @@ class TestActionChains():
         action. perform()
         sleep(3)
 
+    @pytest.mark.skip
     def test_movetoelement(self):
         self.driver.get("http://www.baidu.com")
         ele = self.driver.find_element_by_link_text("设置")
@@ -41,6 +42,7 @@ class TestActionChains():
         action.perform()
         sleep(3)
 
+    @pytest.mark.skip
     def test_dragdrop(self):
         self.driver.get("http://sahitest.com/demo/dragDropMooTools.htm")
         drag_element = self.driver.find_element_by_id("dragger")
@@ -51,6 +53,7 @@ class TestActionChains():
         action.click_and_hold(drag_element).move_to_element(drop_element).release().perform()
         sleep(3)
 
+    @pytest.mark.skip
     def test_keys(self):
         self.driver.get("http://sahitest.com/demo/label.htm")
         ele = self.driver.find_element_by_xpath("/htmL/body/label[1]/input")
@@ -62,7 +65,27 @@ class TestActionChains():
         action.send_keys(Keys.BACK_SPACE).perform()
         sleep(3)
 
-
+    def click_locxy(self, x, y, left_click=True):
+        '''每次移动都是在上一次坐标的基础上（即坐标值是累积的）,所以在每次点击后抵消累积
+        dr:浏览器
+        x:页面x坐标
+        y:页面y坐标
+        left_click:True为鼠标左键点击，否则为右键点击
+        '''
+        if left_click:
+            ActionChains(self.driver).move_by_offset(x, y).click().perform()
+        else:
+            ActionChains(self.driver).move_by_offset(x, y).context_click().perform()
+        ActionChains(self.driver).move_by_offset(-x, -y).perform()  # 将鼠标位置恢复到移动前
+    def test_click_pixel(self):
+        """
+        通过像素坐标点击
+        :return:
+        """
+        self.driver.get('http://www.baidu.com')
+        self.click_locxy(200, 100)  # 鼠标左键点击， 200为x坐标， 100为y坐标
+        self.click_locxy(100, 100, left_click=False)  # 鼠标右键点击
+        sleep(10)
 # if __name__ == '__main__':
 #     pytest.main(['-v', '-s', 'test_ActionChains.py'])
 #     sleep(3)
