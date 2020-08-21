@@ -5,7 +5,7 @@
 # @File:    test_ActionChains.py
 import pytest
 from selenium import webdriver
-from selenium. webdriver import ActionChains
+from selenium.webdriver import ActionChains
 from time import sleep
 
 from selenium.webdriver.common.keys import Keys

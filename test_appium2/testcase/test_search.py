@@ -3,7 +3,7 @@
 # @Time:    2020/4/19 9:03
 # @Author:  haiyong
 # @File:    test_search.py
-from page.app import App
+from test_appium2.page.app import App
 
 
 class TestSearch:

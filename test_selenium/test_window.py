@@ -24,6 +24,7 @@ class Testwindows():
         # print(self.driver.current_window_handle)
         # print(self.driver.window_handles)
         windows=self.driver.window_handles
+        print(windows)
         # 切换到注册窗口
         self.driver.switch_to.window(windows[-1])
         self.driver.find_element_by_id("TANGRAM__PSP_4__userName").send_keys("username")
