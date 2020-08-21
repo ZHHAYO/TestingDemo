@@ -36,3 +36,14 @@ class TestWebview:
         # 对数据进行二次操作
         response_time = all_time['responseEnd'] - all_time['responseStart']
         print(response_time)
+
+    def test_navigation(self):
+        self._driver.find_element(By.XPATH, "//*[@text='交易']").click()
+        webview = self._driver.contexts[-1]
+        self._driver.switch_to.context(webview)
+        type = self._driver.execute_script("return window.performance.navigation.type")
+        print("before : ", type)
+        self._driver.execute_script("window.location.href='https://www.baidu.com/'")
+        self._driver.execute_script("window.location.reload()")
+        type = self._driver.execute_script("return window.performance.navigation.type")
+        print("after : ", type)
