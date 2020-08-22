@@ -22,6 +22,6 @@ class TestFrame():
         # self. driver. switch_to_frame"iframeResult")
         print(self.driver.find_element_by_id("draggable").text)
         # 回到parent_frame
-        # self. driver.switch_to.parent_frame()
+        # self.driver.switch_to.parent_frame()
         self.driver.switch_to.default_content()
         print(self.driver.find_element_by_id("submitBTN").text) #点击运行
