@@ -10,12 +10,13 @@ from time import sleep
 
 class TestForm():
     def setup(self):
-        self.driver = webdriver.Chrome()
+        self.driver = webdriver.Chrome(executable_path=r'D:/testing_tools/chromedriver85/chromedriver.exe')
         self.driver.implicitly_wait(5)
         self.driver.maximize_window()
 
     def teardown_method(self):
-        self.driver.quit()
+        pass
+        # self.driver.quit()
 
     def test_form_login(self):
         self.driver.get("https://testerhome.com/account/sign_in")
