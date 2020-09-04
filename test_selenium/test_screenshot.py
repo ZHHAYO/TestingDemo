@@ -13,7 +13,7 @@ from selenium import webdriver
 class TestScreenshot:
 
     def setup(self):
-        self.driver = webdriver.Chrome(executable_path=(r'D:/testing_tools/chromedriver85/chromedriver.exe'))
+        self.driver = webdriver.Chrome()
         self.driver.implicitly_wait(5)
         self.driver.maximize_window()
 
@@ -26,7 +26,7 @@ class TestScreenshot:
         self.driver.save_screenshot('baidu.png')  # 截取当前页面全图
         # self.driver.get_screenshot_as_file('D:\\baidu.png')
         element = self.driver.find_element_by_id("su")  # 百度一下的按钮
-        element.screenshot('D:\\test.png')
+        # element.screenshot('D:\\test.png')
         print("获取元素坐标：")
         location = element.location
         print(location)

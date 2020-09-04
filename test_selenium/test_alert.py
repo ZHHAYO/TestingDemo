@@ -34,7 +34,10 @@ class TestAlert():
         action = ActionChains(self.driver)
         action.drag_and_drop(drag, drop).perform()
         sleep(2)
-        self.driver.switch_to.alert.accept()
+        alert = self.driver.switch_to.alert
+        print(alert.text)
+        alert.accept()
+        # self.driver.switch_to.alert.accept()
         self.driver.switch_to.default_content()
         self.driver.find_element_by_id("submitBTN").click()
         sleep(3)
