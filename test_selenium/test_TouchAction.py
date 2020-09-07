@@ -27,15 +27,16 @@ class TestTouchAction():
         return:
         """
         self.driver.get("http://www.baidu.com")
-        el=self.driver.find_element_by_id("kw")
-        el_search=self.driver.find_element_by_id("su")
-        el.send_keys("test")
+        input = self.driver.find_element_by_id("kw")
+        search = self.driver.find_element_by_id("su")
+        input.send_keys("test")
         action = TouchActions(self.driver)
-        action.tap(el_search)
+        action.tap(search)
         action.perform()
-        action.scroll_from_element(el, 0, 10000). perform()
-        # sleep(3)
-
+        action.scroll_from_element(input, 0, 10000).perform()
+        next = self.driver.find_element_by_link_text("下一页 >")
+        next.click()
+        sleep(3)
 
 
 

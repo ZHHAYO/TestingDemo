@@ -13,13 +13,14 @@ from selenium.webdriver.common.keys import Keys
 
 class TestActionChains():
     def setup(self):
-        self.driver = webdriver.Chrome()
+        self.driver = webdriver.Chrome(executable_path=(r'D:/testing_tools/chromedriver85/chromedriver.exe'))
         self.driver.implicitly_wait(5)
-        self.driver.maximize_window()
+        # self.driver.maximize_window()
     def teardown(self):
-        self.driver. quit()
+        pass
+        # self.driver.quit()
 
-    @pytest.mark.skip
+    # @pytest.mark.skip
     def test_case_click(self):
         self.driver.get("http://sahitest.com/demo/clicks.htm")
         element_click = self.driver.find_element_by_xpath("//*[@value='click me']")
@@ -33,35 +34,45 @@ class TestActionChains():
         action. perform()
         sleep(3)
 
-    @pytest.mark.skip
+    # @pytest.mark.skip
     def test_movetoelement(self):
         self.driver.get("http://www.baidu.com")
-        ele = self.driver.find_element_by_link_text("设置")
+        ele = self.driver.find_element_by_link_text("新闻")
         action = ActionChains(self.driver)
         action.move_to_element(ele)
+        action.click()
         action.perform()
         sleep(3)
 
-    @pytest.mark.skip
+    # @pytest.mark.skip
     def test_dragdrop(self):
         self.driver.get("http://sahitest.com/demo/dragDropMooTools.htm")
-        drag_element = self.driver.find_element_by_id("dragger")
-        drop_element = self.driver.find_element_by_xpath("/htmL/body/div[2]")
+        drag_ele = self.driver.find_element_by_id("dragger")
+        Item1 = self.driver.find_element_by_xpath("/htmL/body/div[2]")
+        Item2 = self.driver.find_element_by_xpath("/html/body/div[3]")
+        Item3 = self.driver.find_element_by_xpath("/html/body/div[4]")
         action= ActionChains(self.driver)
-        # action.drag_and_drop(drag_element, drop_element).perform()
-        # action.click_and_hold(drag_element).release(drop_element).perform()
-        action.click_and_hold(drag_element).move_to_element(drop_element).release().perform()
+        action.drag_and_drop(drag_ele, Item1).pause(1)
+        action.click_and_hold(drag_ele).release(Item2).pause(1)
+        action.click_and_hold(drag_ele).move_to_element(Item3).release()
+        action.perform()
         sleep(3)
 
-    @pytest.mark.skip
+    # @pytest.mark.skipe
+    # Item 1
     def test_keys(self):
         self.driver.get("http://sahitest.com/demo/label.htm")
-        ele = self.driver.find_element_by_xpath("/htmL/body/label[1]/input")
-        ele.click()
+        ele1 = self.driver.find_element_by_xpath("/htmL/body/label[1]/input")
+        ele2 = self.driver.find_element_by_xpath("/html/body/label[2]/table/tbody/tr/td[2]/input")
+        ele1.click()
         action= ActionChains(self.driver)
         action.send_keys("testing").pause(1)
         action.send_keys(Keys.SPACE).pause(1)
-        action.send_keys("123").pause(1)
+        action.send_keys("1").pause(1)
+        action.send_keys(Keys.BACK_SPACE)
+        action.key_down(Keys.CONTROL).send_keys('a').key_up(Keys.CONTROL)
+        action.key_down(Keys.CONTROL).send_keys('c').key_up(Keys.CONTROL)
+        action.key_down(Keys.CONTROL,ele2).send_keys('v').key_up(Keys.CONTROL)
         action.send_keys(Keys.BACK_SPACE).perform()
         sleep(3)
 

@@ -8,6 +8,7 @@ from time import sleep
 import pytest
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
 
 
 class TestLocator():
@@ -23,7 +24,9 @@ class TestLocator():
         self.driver.get("https://www.baidu.com/")
         element = self.driver.find_element_by_id("kw")
         element.send_keys("test")
+        element.send_keys(Keys.BACK_SPACE)
         # self.driver.find_element(By.ID,"kw").send_keys("test")
+        sleep(5)
         assert element.get_attribute("value") == "test"
 
     def test_name(self):

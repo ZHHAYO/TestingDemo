@@ -38,6 +38,7 @@ class TestBrowserLan():
         options = Options()
         options.add_argument("--lang={}".format(browser_locale))
         driver_path = 'C:/Python27/operadriver.exe'
+        driver_path = 'D:/testing_tools/chromedriver85/operadriver.exe'
         self.driver = webdriver.Opera(executable_path=driver_path,options=options)
         self.driver.get('https://www.baidu.com')
 

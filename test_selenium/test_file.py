@@ -8,7 +8,7 @@ from time import sleep
 
 class TestFile():
     def setup(self):
-        self.driver = webdriver.Chrome()
+        self.driver = webdriver.Chrome(executable_path=(r'D:/testing_tools/chromedriver85/chromedriver.exe'))
         self.driver.implicitly_wait(5)
         self.driver.maximize_window()
 
