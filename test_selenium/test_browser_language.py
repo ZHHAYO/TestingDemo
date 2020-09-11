@@ -33,6 +33,7 @@ class TestBrowserLan():
                                    chrome_options=options)
         self.driver.get('https://www.baidu.com')
 
+    @pytest.mark.skip()
     def test_opera(self):
         browser_locale = 'en-US'
         options = Options()
@@ -56,7 +57,7 @@ class TestBrowserLan():
         self.driver.get('https://www.baidu.com')
         # browser.get('about:preferences')
 
-    @pytest.mark.skip()
+    # @pytest.mark.skip()
     def test_360(self):
         option=webdriver.ChromeOptions()
         option.binary_location=r'D:/software/360Chrome/Chrome/Application/360chrome.exe'
@@ -87,7 +88,7 @@ class TestBrowserLan():
         self.driver.find_element_by_xpath('//*[@id="kw"]').send_keys("test")
         self.driver.find_element_by_id('su').click()
         sleep(10)
-    # @pytest.mark.skip()
+    @pytest.mark.skip()
     def test_Ie(self):
         # option=webdriver.IeOptions()
         # option.binary_location=r'C:/Program Files (x86)/Maxthon5/Bin/Maxthon.exe'
