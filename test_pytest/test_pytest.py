@@ -4,21 +4,21 @@
 # @Author:  haiyong
 # @File:    test_pytest.py
 import pytest
-def test_one():
-    print("开始执行test_one方法")
-    x = 'this'
-    assert 'h' in x
 
-def test_two():
-    print("开始执行test_two方法")
-    x = 'hello'
-    assert 'e' in x
+def calc(a,b):
+    return a + b
 
-def test_three():
-    print("开始执行test_three方法")
-    a = 'hello'
-    b = 'hell world'
-    assert a in b
+
+class TestDemo():
+    def test_answer1(self):
+        assert calc(1, 1) == 2
+
+    def test_answer2(self):
+        assert calc(2, 1) == 4
+
+    @pytest.mark.test
+    def test_answer3(self):
+        assert calc(6, 6) == 12
 
 if __name__=='__main__':
     pytest.main()
