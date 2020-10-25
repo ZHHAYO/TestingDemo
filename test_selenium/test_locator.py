@@ -59,12 +59,22 @@ class TestLocator():
     def test_css(self):
         self.driver.get("https://www.baidu.com/")
         self.driver.find_element_by_id("kw").send_keys("test")
-        sleep(2)
         self.driver.find_element_by_id("su").click()
-        sleep(2)
-        element = self.driver.find_element_by_css_selector("#s_tab a:nth-child(2)")
+        element = self.driver.find_element_by_css_selector("#s_tab a:nth-child(2) + a")
+        # element = self.driver.find_element_by_css_selector('#s_tab a:nth-last-child(9)')
+        # element = self.driver.find_element_by_xpath('//*[@id="s_tab"]/descendant::a[1]')
         element.click()
+        sleep(2)
 
+
+
+    def test_css2(self):
+        self.driver.get("http://sahitest.com/demo/linkTest.htm")
+        # element = self.driver.find_element_by_xpath('//*[contains(@href,"Content")]')
+        # element = self.driver.find_element_by_xpath('//*[starts-with(@href,"linkByC")]')
+        # element = self.driver.find_element_by_xpath('//*[contains(text(),"Content")]')
+        element = self.driver.find_element_by_xpath('//*[text()="linkByContent"]')
+        element.click()
 
 if __name__ == '__main__':
     pytest.main()
