@@ -12,6 +12,7 @@ import pytest
 from selenium import webdriver
 from selenium.webdriver import DesiredCapabilities
 from selenium.webdriver.chrome.options import Options
+# from selenium.webdriver.firefox.options import Options
 # from selenium.webdriver.ie.options import Options
 
 class TestBrowserLan():
@@ -25,7 +26,7 @@ class TestBrowserLan():
     @pytest.mark.skip()
     def test_chrome(self):
         # browser_locale = 'en-US'
-        browser_locale = 'fr-FR'
+        browser_locale = 'ru'
         chrome_driver_path = 'C:/Python27/chromedriver.exe'
         options = Options()
         options.add_argument("--lang={}".format(browser_locale))
@@ -33,13 +34,13 @@ class TestBrowserLan():
                                    chrome_options=options)
         self.driver.get('https://www.baidu.com')
 
-    @pytest.mark.skip()
+    # @pytest.mark.skip()
     def test_opera(self):
         browser_locale = 'en-US'
         options = Options()
         options.add_argument("--lang={}".format(browser_locale))
         driver_path = 'C:/Python27/operadriver.exe'
-        driver_path = 'D:/testing_tools/chromedriver85/operadriver.exe'
+        # driver_path = 'D:/testing_tools/chromedriver85/operadriver.exe'
         self.driver = webdriver.Opera(executable_path=driver_path,options=options)
         self.driver.get('https://www.baidu.com')
 
@@ -57,6 +58,15 @@ class TestBrowserLan():
         self.driver.get('https://www.baidu.com')
         # browser.get('about:preferences')
 
+    @pytest.mark.skip()
+    def test_firefox2(self):
+        options = Options()
+        profile = webdriver.FirefoxProfile()
+        profile.set_preference('intl.accept_languages', 'de-DE')
+        self.driver = webdriver.Firefox(options=options,firefox_profile=profile)
+        self.driver.get('https://www.baidu.com')
+        sleep(10)
+
     # @pytest.mark.skip()
     def test_360(self):
         option=webdriver.ChromeOptions()
@@ -70,7 +80,7 @@ class TestBrowserLan():
         self.driver.get('https://www.baidu.com')
         sleep(10)
 
-    @pytest.mark.skip()
+    # @pytest.mark.skip()
     def test_2345(self):
         option=webdriver.ChromeOptions()
         option.binary_location=r'C:/Program Files (x86)/2345Soft/2345Explorer/2345Explorer.exe'
