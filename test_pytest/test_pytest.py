@@ -16,7 +16,7 @@ class TestDemo():
     def test_answer2(self):
         assert calc(2, 1) == 4
 
-    @pytest.mark.test
+    @pytest.mark.answer3
     def test_answer3(self):
         assert calc(6, 6) == 12
 

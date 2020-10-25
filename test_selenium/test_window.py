@@ -38,6 +38,24 @@ class Testwindows():
         self.driver.find_element_by_id("TANGRAM__PSP_10__submit").click()
         sleep(2)
 
+    def test_window2(self):
+        self.driver.get("http://www.baidu.com")
+        js = "window.open('http://www.sogou.com')"
+        self.driver.execute_script(js)
+        sleep(3)
+        windows = self.driver.window_handles
+        print(windows)
+        # 切换到新打开的窗口
+        self.driver.switch_to.window(windows[-1])
+        self.driver.find_element_by_id("query").send_keys("test sogou") # 搜狗搜索框
+        sleep(3)
+        self.driver.close() # 关闭新打开的窗口
+        # 切回窗口
+        self.driver.switch_to.window(windows[0])
+        self.driver.find_element_by_id("kw").send_keys("test baidu") # 百度搜索框
+        sleep(3)
+
+
 
 
 
