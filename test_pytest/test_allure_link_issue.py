@@ -6,19 +6,16 @@
 
 import allure
 
-@allure.link("http://www.baidu.com", name="链接")
+@allure.link("http://www.baidu.com", name="baidu link")
 def test_with_link():
-    print("这是一条加了链接的测试")
     pass
 
-
-TEST_CASE_LINK = 'https://github.com/gameta/allure-integrations/issues/8#issuecomment-268313637'
+TEST_CASE_LINK = 'https://github.com'
 @allure.testcase(TEST_CASE_LINK, 'Test case title')
 def test_with_testcase_link():
-    print("这是一条测试用例的链接,链接到测试用例里面")
     pass
 
 # --allure-link-pattern=issue:http://www.mytesttracker.com/issue/{}
-@allure.issue("140","这是一个 issue")
+@allure.issue("140","this is a issue")
 def test_with_issue_link():
     pass

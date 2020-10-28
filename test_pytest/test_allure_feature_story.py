@@ -1,11 +1,9 @@
-#!/usr/bin/python3
+ #!/usr/bin/python3
 # -*-coding:utf-8-*-
 # @Time:    2020/8/23 20:26
 # @Author:  haiyong
 # @File:    test_feature_story.py
 
-# !/usr/bin/env python
-# -* coding: utf-8-*-
 import pytest
 import allure
 

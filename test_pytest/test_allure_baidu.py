@@ -14,10 +14,10 @@ import time
 @pytest.mark.parametrize('test_data1', ['allure', 'pytest', 'unittest'])
 def test_steps_demo(test_data1):
     with allure.step("打开百度网页"):
-        driver = webdriver.Chrome("D:/testing_tools/chromedriver83/chromedriver.exe")
+        driver = webdriver.Chrome("D:/testing_tools/chromedriver85/chromedriver.exe")
         driver.get("http://www.baidu.com")
 
-    with allure.step("输入搜索词"):
+    with allure.step("搜索关键词"):
         driver.find_element_by_id("kw").send_keys(test_data1)
         time.sleep(2)
         driver.find_element_by_id("su").click()
